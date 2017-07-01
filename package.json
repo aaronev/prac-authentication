@@ -4,7 +4,11 @@
   "description": "Authentication Examples",
   "main": "app.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "db:create": "createdb auth_prac",
+    "db:schema": "psql auth_prac < models/schema.sql",
+    "db:seed": "npm run db:schema && psql auth_prac < models/seed.sql",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +21,7 @@
   },
   "homepage": "https://github.com/aaronev/prac-authentication#readme",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "ejs": "^2.5.6",
     "express": "^4.15.3",
     "pg-promise": "^6.2.3"
