@@ -1,21 +1,21 @@
 {
   "name": "app-starter",
   "version": "1.0.0",
-  "description": "This is a basic app generator. I find it annoying to keep creating a new app with basically the same folders and files needed for own projects.",
+  "description": "Authentication Examples",
   "main": "app.js",
   "scripts": {
     "test": "npm test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aaronev/app-starter.git"
+    "url": "git+https://github.com/aaronev/prac-authentication.git"
   },
   "author": "Aaron Villanueva",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aaronev/app-starter/issues"
+    "url": "https://github.com/aaronev/prac-authentication/issues"
   },
-  "homepage": "https://github.com/aaronev/app-starter#readme",
+  "homepage": "https://github.com/aaronev/prac-authentication#readme",
   "dependencies": {
     "ejs": "^2.5.6",
     "express": "^4.15.3",
