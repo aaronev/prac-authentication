@@ -1,0 +1,24 @@
+{
+  "name": "app-starter",
+  "version": "1.0.0",
+  "description": "This is a basic app generator. I find it annoying to keep creating a new app with basically the same folders and files needed for own projects.",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaronev/app-starter.git"
+  },
+  "author": "Aaron Villanueva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aaronev/app-starter/issues"
+  },
+  "homepage": "https://github.com/aaronev/app-starter#readme",
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "pg-promise": "^6.2.3"
+  }
+}
