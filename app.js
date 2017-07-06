@@ -1,7 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const db = require('./models/queries.js')
-const passport = require('./passport/strategies.js')
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
 const app = express()
 
 require('ejs')
@@ -11,28 +12,81 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(passport.initialize())
 
-
 var session = null
+
+passport.serializeUser((user, done) => {
+  done(null, user.id)
+})
+
+passport.deserializeUser((id, done) => {
+  db.getUserByID(id).then(user => done(null, user))
+})
+
+passport.use(new LocalStrategy((username, password, done) => {
+  db.getAllUsers()
+    .then(users => {
+      const foundUser = users.find(user => user.username === username)
+      if (!foundUser) {
+        return done(null, false)
+      }
+      if (foundUser.password === password) {
+        session = foundUser
+        return done(null, foundUser)
+      } else {
+        return done(null, false)
+      }
+    })
+}))
 
 app.get('/', (req, res, next) => {
   res.render('index', {session})
 })
 
-app.post('/', (req, res, next) => {
-  const {username, password} = req.body
-  db.getAllUsers('users')
-    .then(users => {
-      let auth = users.find( user => {
-        return user.username === username && user.password ===  password   
-      })
-      session = auth
-    })
-  res.redirect('/')
+app.get('/login', (req, res, next) => {
+  res.render('login')
 })
+
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/', 
+  failureRedirect: '/login'
+}))
 
 app.get('/logout', (req, res, next) => {
   session = null
   res.redirect('/')
 })
 
-app.listen(3000, () => console.log('listening on port 3000'))
+app.listen(3002, () => console.log('listening on port 3002'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

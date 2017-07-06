@@ -1,15 +1,5 @@
-<%if (session) {%>
-  
-  <a href="/logout">Log Out</a>
-
-<% } else {%> 
-
-<h2>Sign In</h2>
-
-  <form method="post" action="/">
-    <input type="text" placeholder="Username" name="username"/>
-    <input type="password" placeholder="Password" name="password"/>
-    <input type="submit"/>
-  </form>
-
+<% if (session) { %>
+<a href="/logout">Logout</a>
+<% } else { %>
+<a href="/login">Login</a>
 <% } %>
